@@ -1,9 +1,9 @@
 package com.cnkl.fems.festival;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
 
 
 @Entity
@@ -16,6 +16,10 @@ public class Festival {
 
     public Festival(String name) {
         this.name = name;
+    }
+
+    public Festival() {
+
     }
 
     public Long getId() {
