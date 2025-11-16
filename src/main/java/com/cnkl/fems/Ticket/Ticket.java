@@ -1,5 +1,5 @@
 package com.cnkl.fems.Ticket;
-
+import com.cnkl.fems.festival.Festival;
 public class Ticket {
     private int id;
     private Festival festival;
