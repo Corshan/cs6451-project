@@ -4,9 +4,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class Customers {
-    //Attributes
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Date dob;
     private String email;
@@ -14,7 +21,7 @@ public class Customers {
     private List<Ticket> tickets;
 
     //Constructor
-    public Customers(int id, String name, Date dob, String email, String phone) {
+    public Customers(Long id, String name, Date dob, String email, String phone) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -24,12 +31,12 @@ public class Customers {
     }
 
     //Getter for ID
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
     //Setter for ID
-    public void setID(int id) {
+    public void setID(Long id) {
         this.id = id;
     }
 

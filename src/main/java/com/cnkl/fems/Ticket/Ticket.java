@@ -1,23 +1,32 @@
 package com.cnkl.fems.Ticket;
+import com.cnkl.fems.festival.Festival;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class Ticket {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Festival festival;
-    private int customerId;
+    private Long customerId;
     private TicketType ticketType;
 
-    public Ticket (int id, Festival festival, int customerId, TicketType ticketType) {
+    public Ticket (Long id, Festival festival, Long customerId, TicketType ticketType) {
         this.id = id;
         this.festival = festival;
         this.customerId = customerId;
         this.ticketType = ticketType;
     }
 
-    public int getId () {
+    public Long getId () {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,11 +38,11 @@ public class Ticket {
         this.festival = festival;
     }
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
