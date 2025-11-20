@@ -1,4 +1,4 @@
- package com.cnkl.fems.budget;
+ package com.cnkl.fems.festival.budget;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

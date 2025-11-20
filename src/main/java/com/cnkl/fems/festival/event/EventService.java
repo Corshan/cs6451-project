@@ -1,6 +1,6 @@
 package com.cnkl.fems.festival.event;
 
-import com.cnkl.fems.budget.BudgetService; // Dependency for financial rule
+import com.cnkl.fems.festival.budget.BudgetService; // Dependency for financial rule
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
