@@ -1,4 +1,4 @@
-package com.cnkl.fems.festival;
+package com.cnkl.fems.festival.stall;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
