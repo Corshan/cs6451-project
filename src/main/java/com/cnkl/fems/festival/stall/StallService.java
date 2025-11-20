@@ -1,4 +1,4 @@
-package com.cnkl.fems.festival;
+package com.cnkl.fems.festival.stall;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
