@@ -1,6 +1,6 @@
 package com.cnkl.fems.Admin;
 
-import com.cnkl.fems.Festival.Festival;
+import com.cnkl.fems.festival.Festival;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
