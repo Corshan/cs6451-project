@@ -1,4 +1,4 @@
-package com.cnkl.fems.venue;
+package com.cnkl.fems.festival.venue;
 
 import org.springframework.stereotype.Service;
 import java.util.List;

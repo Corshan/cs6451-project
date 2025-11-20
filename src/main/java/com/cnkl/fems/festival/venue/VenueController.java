@@ -1,4 +1,4 @@
-package com.cnkl.fems.venue;
+package com.cnkl.fems.festival.venue;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.cnkl.fems.festival.event;
 
-import com.cnkl.fems.venue.Venue;
+import com.cnkl.fems.festival.venue.Venue;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import com.cnkl.fems.festival.Festival;
