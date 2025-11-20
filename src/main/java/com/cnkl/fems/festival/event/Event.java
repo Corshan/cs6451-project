@@ -1,4 +1,4 @@
-package com.cnkl.fems.event;
+package com.cnkl.fems.festival.event;
 
 import com.cnkl.fems.venue.Venue;
 import jakarta.persistence.*;
