@@ -1,4 +1,4 @@
-package com.cnkl.fems.budget;
+package com.cnkl.fems.festival.budget;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,5 +1,5 @@
 
-package com.cnkl.fems.budget;
+package com.cnkl.fems.festival.budget;
 
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
