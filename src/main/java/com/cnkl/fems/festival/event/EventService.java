@@ -1,4 +1,4 @@
-package com.cnkl.fems.event;
+package com.cnkl.fems.festival.event;
 
 import com.cnkl.fems.budget.BudgetService; // Dependency for financial rule
 import org.springframework.stereotype.Service;
