@@ -1,16 +1,14 @@
+
 package com.cnkl.fems.customer;
 import com.cnkl.fems.ticket.Ticket;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
-public class Customers {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,26 +16,22 @@ public class Customers {
     private Date dob;
     private String email;
     private String phone;
-    private List<Ticket> tickets;
+    @OneToMany(mappedBy = "customer")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    public Customer() {}
 
     //Constructor
-    public Customers(Long id, String name, Date dob, String email, String phone) {
-        this.id = id;
+    public Customer(String name, Date dob, String email, String phone) {
         this.name = name;
         this.dob = dob;
         this.email = email;
         this.phone = phone;
-        this.tickets = new ArrayList<>();
     }
 
     //Getter for ID
     public Long getId() {
         return id;
-    }
-
-    //Setter for ID
-    public void setID(Long id) {
-        this.id = id;
     }
 
     //Getter for name
@@ -87,5 +81,6 @@ public class Customers {
 
     public void purchaseTicket(Ticket ticket) {
         tickets.add(ticket);
+        ticket.setCustomer(this);
     }
 }

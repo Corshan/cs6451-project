@@ -9,13 +9,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Customer")
-public class CustomersController {
+public class CustomerController {
 
     @Autowired
-    private CustomersService customersService;
+    private CustomerService customerService;
 
     @GetMapping
-    public List<Customers> getAllCustomers(){
-        return customersService.getAllCustomers();
+    public List<Customer> getAllCustomers(){
+        return customerService.getAllCustomers();
     }
 }
