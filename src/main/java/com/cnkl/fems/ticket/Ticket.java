@@ -1,33 +1,36 @@
 package com.cnkl.fems.ticket;
 import com.cnkl.fems.festival.Festival;
+import com.cnkl.fems.customer.Customer;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Festival festival;
-    private Long customerId;
-    private TicketType ticketType;
 
-    public Ticket (Long id, Festival festival, Long customerId, TicketType ticketType) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "festival_id")
+    private Festival festival;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @Enumerated(EnumType.STRING)
+    private TicketTypes ticketType;
+
+    public Ticket() {}
+
+    public Ticket (Festival festival, Customer customer, TicketTypes ticketType) {
         this.festival = festival;
-        this.customerId = customerId;
+        this.customer = customer;
         this.ticketType = ticketType;
     }
 
     public Long getId () {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Festival getFestival() {
@@ -38,23 +41,23 @@ public class Ticket {
         this.festival = festival;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public TicketType getTicketType() {
+    public TicketTypes getTicketType() {
         return ticketType;
     }
 
-    public void setTicketType(TicketType ticketType){
+    public void setTicketType(TicketTypes ticketType){
         this.ticketType = ticketType;
     }
 
     public float getTotalPrice() {
-        return ticketType.getTicketPrice();
+        return ticketType.getTicketPrice(festival.getBaseTicketCost());
     }
 }
