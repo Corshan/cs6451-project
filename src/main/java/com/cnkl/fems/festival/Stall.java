@@ -1,9 +1,6 @@
 package com.cnkl.fems.festival;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
 public class Stall {
@@ -14,19 +11,21 @@ public class Stall {
     private String companyName;
     private String stallType;
 
-    public Stall (Long id, int stallNumber, String companyName, String stallType) {
-        this.id = id;
+    @ManyToOne
+    @JoinColumn(name = "festival_id")
+    private Festival festival;
+
+    public Stall() {}
+
+    public Stall (int stallNumber, String companyName, String stallType, Festival festival) {
         this.stallNumber = stallNumber;
         this.companyName = companyName;
         this.stallType = stallType;
+        this.festival = festival;
     }
 
     public Long getId () {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getStallNumber () {
@@ -51,5 +50,13 @@ public class Stall {
 
     public void setStallType(String stallType) {
         this.stallType = stallType;
+    }
+
+    public Festival getFestival() {
+        return festival;
+    }
+
+    public void setFestival(Festival festival) {
+        this.festival = festival;
     }
 }

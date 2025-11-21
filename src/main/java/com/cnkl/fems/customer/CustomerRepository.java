@@ -1,8 +1,8 @@
-package com.cnkl.fems.Customer;
+package com.cnkl.fems.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomersRepository extends JpaRepository<Customers, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }

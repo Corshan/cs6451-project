@@ -1,4 +1,4 @@
-package com.cnkl.fems.Customer;
+package com.cnkl.fems.ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Customer")
-public class CustomersController {
+@RequestMapping("/Ticket")
+public class TicketController {
 
     @Autowired
-    private CustomersService customersService;
+    private TicketService ticketService;
 
     @GetMapping
-    public List<Customers> getAllCustomers(){
-        return customersService.getAllCustomers();
+    public List<Ticket> getAllTickets(){
+        return ticketService.getAllTickets();
     }
 }

@@ -1,4 +1,4 @@
-package com.cnkl.fems.Ticket;
+package com.cnkl.fems.ticket;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

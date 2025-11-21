@@ -1,4 +1,4 @@
-package com.cnkl.fems.Ticket;
+package com.cnkl.fems.ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

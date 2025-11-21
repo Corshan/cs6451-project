@@ -1,9 +1,11 @@
 package com.cnkl.fems.festival;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.cnkl.fems.ticket.Ticket;
+
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -14,8 +16,17 @@ public class Festival {
 
     private String name;
 
-    public Festival(String name) {
+    private float baseTicketCost;
+
+    @OneToMany(mappedBy = "festival")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "festival")
+    private List<Stall> stalls = new ArrayList<>();
+
+    public Festival(String name, float baseTicketCost) {
         this.name = name;
+        this.baseTicketCost = baseTicketCost;
     }
 
     public Festival() {
@@ -26,15 +37,31 @@ public class Festival {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getBaseTicketCost() {return baseTicketCost;}
+
+    public void setBaseTicketCost(float baseTicketCost) {this.baseTicketCost = baseTicketCost;}
+
+    public List<Ticket> getTickets() { return tickets; }
+
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
+        ticket.setFestival(this);
+    }
+
+    public List<Stall> getStalls() {
+        return stalls;
+    }
+
+    public void addStall(Stall stall) {
+        stalls.add(stall);
+        stall.setFestival(this);
     }
 }

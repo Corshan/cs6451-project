@@ -1,3 +1,4 @@
+/*
 package com.cnkl.fems.Ticket;
 
 public class BaseTicket implements TicketType{
@@ -20,3 +21,4 @@ public class BaseTicket implements TicketType{
         this.cost = cost;
     }
 }
+*/

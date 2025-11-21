@@ -1,16 +1,16 @@
+/*
 package com.cnkl.fems.Ticket;
 
-public class SeniorTicket implements TicketType{
+public class ChildTicket implements TicketType{
     private float cost;
-    private static final float DISCOUNT = 0.10f;
 
-    public SeniorTicket(float cost) {
+    public ChildTicket(float cost) {
         this.cost = cost;
     }
 
     @Override
     public float getTicketPrice() {
-        return cost * (1 - DISCOUNT);
+        return 0.0f;
     }
 
     public float getCost() {
@@ -21,3 +21,4 @@ public class SeniorTicket implements TicketType{
         this.cost = cost;
     }
 }
+*/
