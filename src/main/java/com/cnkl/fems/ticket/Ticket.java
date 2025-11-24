@@ -21,6 +21,8 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private TicketTypes ticketType;
 
+    private boolean vip;
+
     public Ticket() {}
 
     public Ticket (Festival festival, Customer customer, TicketTypes ticketType) {
@@ -57,7 +59,21 @@ public class Ticket {
         this.ticketType = ticketType;
     }
 
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
+    }
+
     public float getTotalPrice() {
-        return ticketType.getTicketPrice(festival.getBaseTicketCost());
+        TicketDecorators.TicketPriceComponent component = new TicketDecorators.BaseTicketComponent(this);
+
+        if (vip) {
+            component = new TicketDecorators.VIPDecorator(component);
+        }
+
+        return component.getTotalPrice();
     }
 }
