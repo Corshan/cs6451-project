@@ -1,36 +1,37 @@
-package com.cnkl.fems.Customer;
-import com.cnkl.fems.Ticket.Ticket;
+
+package com.cnkl.fems.customer;
+import com.cnkl.fems.ticket.Ticket;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Customers {
-    //Attributes
-    private int id;
+import jakarta.persistence.*;
+
+@Entity
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Date dob;
     private String email;
     private String phone;
-    private List<Ticket> tickets;
+    @OneToMany(mappedBy = "customer")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    public Customer() {}
 
     //Constructor
-    public Customers(int id, String name, Date dob, String email, String phone) {
-        this.id = id;
+    public Customer(String name, Date dob, String email, String phone) {
         this.name = name;
         this.dob = dob;
         this.email = email;
         this.phone = phone;
-        this.tickets = new ArrayList<>();
     }
 
     //Getter for ID
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    //Setter for ID
-    public void setID(int id) {
-        this.id = id;
     }
 
     //Getter for name
@@ -80,5 +81,6 @@ public class Customers {
 
     public void purchaseTicket(Ticket ticket) {
         tickets.add(ticket);
+        ticket.setCustomer(this);
     }
 }
