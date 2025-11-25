@@ -11,8 +11,12 @@ import java.util.List;
 @RequestMapping("/festival")
 public class FestivalController {
 
+    private final FestivalService festivalService;
+
     @Autowired
-    private FestivalService festivalService;
+    FestivalController(FestivalService festivalService) {
+        this.festivalService = festivalService;
+    }
 
     @GetMapping
     public List<Festival> getAllFestivals(){
