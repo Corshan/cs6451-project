@@ -24,8 +24,13 @@ public enum TicketTypes {
         public float getTicketPrice(float baseCost) {
             return baseCost * (1 - 0.15f);
         }
+    },
+    VIP {
+        @Override
+        public float getTicketPrice(float baseCost) {
+            return baseCost * 1.50f;
+        }
     };
-
     public abstract float getTicketPrice(float baseCost);
 
 }
