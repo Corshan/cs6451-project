@@ -68,10 +68,10 @@ public class Ticket {
     }
 
     public float getTotalPrice() {
-        TicketDecorators.TicketPriceComponent component = new TicketDecorators.BaseTicketComponent(this);
+        TicketPriceComponent component = new BaseTicketComponent(this);
 
         if (vip) {
-            component = new TicketDecorators.VIPDecorator(component);
+            component = new VIPDecorator(component);
         }
 
         return component.getTotalPrice();
