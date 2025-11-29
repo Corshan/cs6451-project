@@ -7,18 +7,16 @@ import java.util.List;
 import java.util.Optional;
 import com.cnkl.fems.festival.Festival;
 import com.cnkl.fems.customer.Customer;
-import com.cnkl.fems.ticket.TicketAbstractFactory;
-import com.cnkl.fems.ticket.StandardTicketFactory;
+
 @Service
 public class TicketService {
 
     private final TicketRepository ticketRepository;
-    private final TicketAbstractFactory ticketFactory;
+
 
     @Autowired
-    public TicketService(TicketRepository ticketRepository, StandardTicketFactory standardTicketFactory) {
+    public TicketService(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
-        this.ticketFactory = standardTicketFactory;
 
     }
 
@@ -30,11 +28,11 @@ public class TicketService {
         return ticketRepository.findById(id);
     }
 
-    public Ticket createTicket(TicketTypes type, Festival festival, Customer customer) {
+    public Ticket createTicket( Festival festival, Customer customer ,TicketTypes type,TicketCreator creator) {
 
-        Ticket newTicket = ticketFactory.createTicket(type, festival, customer);
+        Ticket ticket =  creator.createTicket(festival,customer,type);
 
-        return ticketRepository.save(newTicket);
+        return ticketRepository.save(ticket);
     }
 
     public void deleteTicketById(Long id) {
