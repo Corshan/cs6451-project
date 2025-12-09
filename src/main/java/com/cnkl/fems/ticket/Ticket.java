@@ -67,13 +67,4 @@ public class Ticket {
         this.vip = vip;
     }
 
-    public float getTotalPrice() {
-        TicketPriceComponent component = new BaseTicketComponent(this);
-
-        if (vip) {
-            component = new VIPDecorator(component);
-        }
-
-        return component.getTotalPrice();
-    }
 }
