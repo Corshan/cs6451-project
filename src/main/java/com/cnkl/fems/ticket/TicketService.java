@@ -12,12 +12,13 @@ import com.cnkl.fems.customer.Customer;
 public class TicketService {
 
     private final TicketRepository ticketRepository;
+    private final TicketPriceFactory ticketPriceFactory;
 
 
     @Autowired
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, TicketPriceFactory ticketPriceFactory) {
         this.ticketRepository = ticketRepository;
-
+        this.ticketPriceFactory = ticketPriceFactory;
     }
 
     public List<Ticket> getAllTickets() {
@@ -33,6 +34,11 @@ public class TicketService {
         Ticket ticket =  creator.createTicket(festival,customer,type);
 
         return ticketRepository.save(ticket);
+    }
+
+    public float calculatePrice(Ticket ticket) {
+        TicketPriceComponent component = ticketPriceFactory.create(ticket);
+        return component.getTotalPrice();
     }
 
     public void deleteTicketById(Long id) {
