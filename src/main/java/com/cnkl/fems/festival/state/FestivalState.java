@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 @DiscriminatorColumn(name = "state")
 public abstract class FestivalState {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public void setId(Long id) {
