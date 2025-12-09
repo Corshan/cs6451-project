@@ -5,6 +5,7 @@ import com.cnkl.fems.customer.Customer;
 import com.cnkl.fems.festival.stall.Stall;
 import com.cnkl.fems.festival.state.ClosedState;
 import com.cnkl.fems.festival.state.FestivalState;
+import com.cnkl.fems.festival.state.OpenState;
 import com.cnkl.fems.ticket.Ticket;
 
 import com.cnkl.fems.festivalOrganiser.FestivalOrganiser;
@@ -25,16 +26,16 @@ public class Festival {
     private float baseTicketCost;
     private int totalTickets;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private FestivalState state = new ClosedState();
 
-    @OneToMany(mappedBy = "festival")
+    @OneToMany(mappedBy = "festival", cascade=CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 
-    @OneToMany(mappedBy = "festival")
+    @OneToMany(mappedBy = "festival", cascade=CascadeType.ALL)
     private List<Stall> stalls = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private FestivalOrganiser festivalOrganiser;
 
     public Festival(String name, float baseTicketCost, int totalTickets) {
@@ -105,5 +106,13 @@ public class Festival {
 
     public void setTotalTickets(int totalTickets) {
         this.totalTickets = totalTickets;
+    }
+
+    public void setStateOpen(){
+        this.state = new OpenState();
+    }
+
+    public void setStateClosed(){
+        this.state = new ClosedState();
     }
 }
