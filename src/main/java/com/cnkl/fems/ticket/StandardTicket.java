@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 
 public class StandardTicket extends Ticket {
     public StandardTicket() { super(); }
-    public StandardTicket(Festival festival, Customer customer, TicketTypes ticketType) {
+    public StandardTicket(Festival festival, Customer customer, TicketTypes ticketType)
+    {
         super(festival, customer, ticketType);
         this.setVip(false);
     }

@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 
 public class PremiumTicket extends Ticket {
     public PremiumTicket() { super(); }
-    public PremiumTicket(Festival festival, Customer customer, TicketTypes ticketType) {
+    public PremiumTicket(Festival festival, Customer customer, TicketTypes ticketType)
+    {
         super(festival, customer, ticketType);
         this.setVip(true);
     }
