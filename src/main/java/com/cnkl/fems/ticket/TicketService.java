@@ -8,8 +8,9 @@ import java.util.Optional;
 import com.cnkl.fems.festival.Festival;
 import com.cnkl.fems.customer.Customer;
 
-@Service
-public class TicketService {
+
+@Service("mainTicketService")
+public class TicketService implements TicketCreator {
 
     private final TicketRepository ticketRepository;
     private final TicketPriceFactory ticketPriceFactory;
@@ -29,11 +30,9 @@ public class TicketService {
         return ticketRepository.findById(id);
     }
 
-    public Ticket createTicket( Festival festival, Customer customer ,TicketTypes type,TicketCreator creator) {
-
-        Ticket ticket =  creator.createTicket(festival,customer,type);
-
-        return ticketRepository.save(ticket);
+    @Override
+    public Ticket saveNewTicket(Festival festival, Customer customer, TicketTypes type) {
+        throw new UnsupportedOperationException("Use StandardTicketService or PremiumTicketService for creation.");
     }
 
     public float calculatePrice(Ticket ticket) {
