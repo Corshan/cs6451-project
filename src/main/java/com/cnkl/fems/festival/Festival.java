@@ -44,6 +44,13 @@ public class Festival {
         this.totalTickets = totalTickets;
     }
 
+    public Festival(long id, String name, float baseTicketCost, int totalTickets){
+        this.id = id;
+        this.name = name;
+        this.baseTicketCost = baseTicketCost;
+        this.totalTickets = totalTickets;
+    }
+
     public Festival() {
 
     }

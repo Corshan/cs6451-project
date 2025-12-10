@@ -1,6 +1,7 @@
 package com.cnkl.fems.festival;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FestivalDto {
     public Long getId() {
@@ -30,4 +31,9 @@ public class FestivalDto {
     private Long id;
     private String name;
     private List<Long> tickets;
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(((FestivalDto) obj).id, this.id);
+    }
 }
