@@ -48,6 +48,8 @@ class FestivalServiceTest {
     @AfterEach
     void tearDown() {
         mockFestival1 = null;
+        mockFestival2 = null;
+        mockFestival3 = null;
     }
 
     @Test
