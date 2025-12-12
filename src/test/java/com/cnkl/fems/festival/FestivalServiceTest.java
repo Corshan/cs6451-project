@@ -1,10 +1,10 @@
 package com.cnkl.fems.festival;
 
+import com.cnkl.fems.customer.Customer;
 import com.cnkl.fems.customer.CustomerRepository;
 import com.cnkl.fems.festival.state.ClosedState;
 import com.cnkl.fems.festival.state.OpenState;
-import com.cnkl.fems.ticket.TicketMapper;
-import com.cnkl.fems.ticket.TicketRepository;
+import com.cnkl.fems.ticket.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +14,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,11 +40,17 @@ class FestivalServiceTest {
     private Festival mockFestival2;
     private Festival mockFestival3;
 
+    private Customer mockCustomer1;
+
+    private Ticket mockTicket1;
+
     @BeforeEach
     void setUp() {
         mockFestival1 = new Festival(1L, "All Together Now", 10f, 100);
         mockFestival2 = new Festival(2L, "Electric Picnic", 10f, 100);
         mockFestival3 = new Festival(3L, "Glastonbury", 10f, 100);
+        mockCustomer1 = new Customer(1L, "Corey Shanahan", new Date(), "0834837755", "corey@example.com");
+        mockTicket1 = new Ticket(1L, mockFestival1, mockCustomer1, TicketTypes.BASE);
     }
 
     @AfterEach
@@ -50,6 +58,8 @@ class FestivalServiceTest {
         mockFestival1 = null;
         mockFestival2 = null;
         mockFestival3 = null;
+        mockCustomer1 = null;
+        mockTicket1 = null;
     }
 
     @Test
@@ -121,5 +131,46 @@ class FestivalServiceTest {
         List<FestivalDto> festivals = festivalService.getAllFestivals();
 
         assertTrue(festivals.isEmpty());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenFestivalDoesNotExist(){
+        assertThrows(RuntimeException.class, () -> {
+           festivalService.purchaseTicket(0,0);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionWhenCustomerDoesNotExist(){
+        when(festivalRepository.findById(1L)).thenReturn(Optional.of(mockFestival1));
+
+        assertThrows(RuntimeException.class, () -> {
+            festivalService.purchaseTicket(1L,0);
+        });
+    }
+
+    @Test
+    void shouldThrowExceptionWhenFestivalIsClosed(){
+        when(festivalRepository.findById(1L)).thenReturn(Optional.of(mockFestival1));
+        when(customerRepository.findById(1L)).thenReturn(Optional.of(mockCustomer1));
+
+        assertThrows(RuntimeException.class, () -> {
+            festivalService.purchaseTicket(1L,1L);
+        });
+    }
+
+    @Test
+    void shouldReturnTicketDto(){
+        when(festivalRepository.findById(1L)).thenReturn(Optional.of(mockFestival1));
+        when(customerRepository.findById(1L)).thenReturn(Optional.of(mockCustomer1));
+        when(ticketRepository.save(any(Ticket.class))).thenReturn(mockTicket1);
+
+        mockFestival1.setStateOpen();
+
+        TicketDto dto = festivalService.purchaseTicket(1L, 1L);
+
+        assertEquals(1L, dto.getId());
+        assertEquals(1L, dto.getCustomer_id());
+        assertEquals(1L, dto.getFestival_id());
     }
 }

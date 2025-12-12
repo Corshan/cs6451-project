@@ -31,6 +31,13 @@ public class Ticket {
         this.ticketType = ticketType;
     }
 
+    public Ticket (long id, Festival festival, Customer customer, TicketTypes ticketType) {
+        this.id = id;
+        this.festival = festival;
+        this.customer = customer;
+        this.ticketType = ticketType;
+    }
+
     public Long getId () {
         return id;
     }

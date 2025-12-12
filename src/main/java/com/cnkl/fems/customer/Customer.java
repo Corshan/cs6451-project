@@ -29,6 +29,14 @@ public class Customer {
         this.phone = phone;
     }
 
+    public Customer(long id, String name, Date dob, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+    }
+
     //Getter for ID
     public Long getId() {
         return id;
